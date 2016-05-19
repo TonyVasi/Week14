@@ -1,0 +1,114 @@
+import java.util.*;
+public interface RandomNumber
+{
+    int getRandom();
+    ArrayList getHistory();
+}
+
+
+import java.util.ArrayList;
+import java.util.*;
+public class Card implements RandomNumber
+{
+   ArrayList<Integer> history = new ArrayList<Integer>();
+   public int getRandom()
+   {
+       Random rand = new Random();
+       int num = rand.nextInt(52)+1;
+       history.add(num);
+       return num;
+   }
+   public ArrayList getHistory()
+   {
+       return history;
+   }
+}
+
+
+import java.util.ArrayList;
+import java.util.*;
+public class Dice implements RandomNumber
+{
+   ArrayList<Integer> history = new ArrayList<Integer>();
+   public int getRandom()
+   {
+       Random rand = new Random();
+       int num = rand.nextInt(6)+1;
+       history.add(num);
+       return num;
+   }
+   public ArrayList getHistory()
+   {
+       return history;
+   }
+}
+
+
+public class Test1 extends Card
+{
+    int runThrough;
+    public Test1()
+    {
+        runThrough = 1;
+    }
+    public Test1(int x)
+    {
+        runThrough = x;
+    }
+    public int getRunThrough()
+    {
+        return runThrough;
+    }
+    public int setRunThrough(int x)
+    {
+        runThrough = x;
+        return x;
+    }
+    public static void main(String args[])
+    {
+        Test1 newTest = new Test1(4);
+        while (newTest.getRunThrough() > 0)
+        {
+            newTest.getRandom();
+            int x = newTest.getRunThrough();
+            x--;
+            newTest.setRunThrough(x);
+        }
+        System.out.println(newTest.getHistory());
+    }
+}
+
+
+public class Test2 extends Dice
+{
+    int runThrough;
+    public Test2()
+    {
+        runThrough = 1;
+    }
+    public Test2(int x)
+    {
+        runThrough = x;
+    }
+    public int getRunThrough()
+    {
+        return runThrough;
+    }
+    public int setRunThrough(int x)
+    {
+        runThrough = x;
+        return x;
+    }
+    public static void main(String args[])
+    {
+        Test2 newTest = new Test2(4);
+        while (newTest.getRunThrough() > 0)
+        {
+            newTest.getRandom();
+            int x = newTest.getRunThrough();
+            x--;
+            newTest.setRunThrough(x);
+        }
+        System.out.println(newTest.getHistory());
+    }
+}
